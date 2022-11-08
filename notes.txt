@@ -1,0 +1,9 @@
+Create project (react):
+    dotnet new react --auth None --no-https
+
+Scarfold controller:
+    Install tool first
+        dotnet new tool-manifest # if you are setting up this repo
+        dotnet tool install --local dotnet-aspnet-codegenerator --version 7.0.0
+    Create controller
+        dotnet dotnet-aspnet-codegenerator controller -dc ExpenseTrackerApi.Models.DatabaseContext -name CategoriesController -async -api -m Category -sqlite
