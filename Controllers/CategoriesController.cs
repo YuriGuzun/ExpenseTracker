@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ExpenseTrackerApi.Models;
+using ExpenseTrackerApi.Models.Database;
 
-namespace ExpenseTrackerApi
+namespace ExpenseTrackerApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

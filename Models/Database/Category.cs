@@ -1,4 +1,4 @@
-namespace ExpenseTrackerApi.Models;
+namespace ExpenseTrackerApi.Models.Database;
 
 public class Category
 {
