@@ -1,4 +1,4 @@
-namespace ExpenseTrackerApi.Models;
+namespace ExpenseTrackerApi.Services.Implementation;
 
 public class UsersService : IUsersService
 {

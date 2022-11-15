@@ -1,12 +1,17 @@
-using ExpenseTrackerApi.Models;
 using ExpenseTrackerApi.Models.Database;
+using ExpenseTrackerApi.Repositories;
+using ExpenseTrackerApi.Services;
+using ExpenseTrackerApi.Services.Implementation;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddScoped<IReportingService, ReportingService>();
+builder.Services.AddScoped<ITransactionsService, TransactionsService>();
+
+// Repos
+builder.Services.AddScoped<ITransactionsRepository, TransactionsRepository>();
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<DatabaseContext>(options =>

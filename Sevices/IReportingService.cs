@@ -1,8 +1,8 @@
 using ExpenseTrackerApi.Models.Domain;
 
-namespace ExpenseTrackerApi.Models;
+namespace ExpenseTrackerApi.Services;
 
 public interface IReportingService
 {
-    public List<ReportingRecord> GetReport(DateTime fromDate, DateTime toDate);
+    public Task<List<ReportingRecord>> GetReportAync(DateTime fromDate, DateTime toDate);
 }

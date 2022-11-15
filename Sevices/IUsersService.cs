@@ -1,4 +1,4 @@
-namespace ExpenseTrackerApi.Models;
+namespace ExpenseTrackerApi.Services;
 
 public interface IUsersService
 {

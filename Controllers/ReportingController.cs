@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ExpenseTrackerApi.Models;
 using ExpenseTrackerApi.Models.DataTransferObjects;
+using ExpenseTrackerApi.Services;
 
 namespace ExpenseTrackerApi.Controllers
 {
@@ -24,12 +25,12 @@ namespace ExpenseTrackerApi.Controllers
                 return BadRequest("From date should be in the past");
             }
 
-            var records = this.reportingService.GetReport(request.FromDate, request.ToDate);
+            var records = await this.reportingService.GetReportAync(request.FromDate, request.ToDate);
             var response = new ReportingResponse
             {
                 GenerationDate = DateTime.Now,
                 Records = records.Select(
-                r => new ReportingResponseRecord { CategoryName = r.CategoryName, Percent = r.Percent })
+                    r => new ReportingResponseRecord { CategoryName = r.CategoryName, Percent = r.Percent })
             };
 
             return response;

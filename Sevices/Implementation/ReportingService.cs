@@ -1,22 +1,23 @@
+using ExpenseTrackerApi.Models.Database;
 using ExpenseTrackerApi.Models.Domain;
+using ExpenseTrackerApi.Repositories;
 
-namespace ExpenseTrackerApi.Models.Database;
+namespace ExpenseTrackerApi.Services.Implementation;
 
 public class ReportingService : IReportingService
 {
-    private readonly DatabaseContext databaseContext;
+    private readonly ITransactionsRepository transactionsRepository;
 
-    public ReportingService(DatabaseContext databaseContext)
+    public ReportingService(ITransactionsRepository transactionsRepository)
     {
-        this.databaseContext = databaseContext;
+        this.transactionsRepository = transactionsRepository;
     }
 
-    public List<ReportingRecord> GetReport(DateTime fromDate, DateTime toDate)
+    public async Task<List<ReportingRecord>> GetReportAync(DateTime fromDate, DateTime toDate)
     {
-        return new List<ReportingRecord>
-        {
-            new ReportingRecord { CategoryName = "Food", Percent = 50 },
-            new ReportingRecord { CategoryName = "Entertaiment", Percent = 50 }
-        };
+        var transaction = await this.transactionsRepository.GetTransactionsAsync(fromDate, toDate);
+
+        // TODO: Do the actual calculations
+        return new List<ReportingRecord> { new ReportingRecord { CategoryName = "Food", Percent = 100 }};
     }
 }
