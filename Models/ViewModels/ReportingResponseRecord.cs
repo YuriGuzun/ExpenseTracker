@@ -1,4 +1,4 @@
-namespace ExpenseTrackerApi.Models.DataTransferObjects;
+namespace ExpenseTrackerApi.Models.ViewModels;
 
 public class ReportingResponseRecord
 {

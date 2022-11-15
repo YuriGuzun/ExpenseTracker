@@ -1,6 +1,6 @@
-namespace ExpenseTrackerApi.Models.DataTransferObjects;
+namespace ExpenseTrackerApi.Models.ViewModels;
 
-public class GetTransactionsRequest
+public class ReportingRequest
 {
     public DateTime FromDate { get; set; } = DateTime.Now.AddDays(-7);
     public DateTime ToDate { get; set; } = DateTime.Now;

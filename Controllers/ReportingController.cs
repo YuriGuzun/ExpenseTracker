@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ExpenseTrackerApi.Models;
-using ExpenseTrackerApi.Models.DataTransferObjects;
+using ExpenseTrackerApi.Models.ViewModels;
 using ExpenseTrackerApi.Services;
 
 namespace ExpenseTrackerApi.Controllers

@@ -4,5 +4,5 @@ namespace ExpenseTrackerApi.Services;
 
 public interface IReportingService
 {
-    public Task<List<ReportingRecord>> GetReportAync(DateTime fromDate, DateTime toDate);
+    public Task<IEnumerable<ReportingRecord>> GetReportAync(DateTime fromDate, DateTime toDate);
 }

@@ -13,11 +13,14 @@ public class ReportingService : IReportingService
         this.transactionsRepository = transactionsRepository;
     }
 
-    public async Task<List<ReportingRecord>> GetReportAync(DateTime fromDate, DateTime toDate)
+    public async Task<IEnumerable<ReportingRecord>> GetReportAync(DateTime fromDate, DateTime toDate)
     {
         var transaction = await this.transactionsRepository.GetTransactionsAsync(fromDate, toDate);
+        double totalSum = transaction.Sum(t => t.Amount);
 
-        // TODO: Do the actual calculations
-        return new List<ReportingRecord> { new ReportingRecord { CategoryName = "Food", Percent = 100 }};
+        return transaction.GroupBy(
+            t => t.Category.Name,
+            t => t.Amount,
+            (categoryName, ammounts) => new ReportingRecord { CategoryName = categoryName, Percent = ammounts.Sum() / totalSum * 100 });
     }
 }
