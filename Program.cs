@@ -41,10 +41,9 @@ using (var scope = app.Services.CreateScope())
 
     var context = services.GetRequiredService<DatabaseContext>();
     context.Database.EnsureCreated();
+    Helper.FillWithData(context);
 }
 
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

@@ -31,7 +31,7 @@ namespace ExpenseTrackerApi.Controllers
                         Date = d.Date,
                         Id = d.Id,
                         Description = d.Description,
-                        CategoryName = "ToDo" // TODO: Pull actual category name
+                        CategoryName = d.Category.Name
                     })
             };
 

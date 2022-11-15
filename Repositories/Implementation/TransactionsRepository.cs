@@ -23,7 +23,13 @@ public class TransactionsRepository : ITransactionsRepository
 
     public async Task<List<Transaction>> GetTransactionsAsync(DateTime fromDate, DateTime toDate)
     {
-        var allTransactions = await this.databaseContext.Transactions.ToListAsync();
+        var allTransactions = await this.databaseContext
+            .Transactions
+            .Include(t => t.Category)
+            .Where(t => t.Date >= fromDate && t.Date <= toDate)
+            .OrderByDescending(t => t.Date)
+            .AsNoTracking()
+            .ToListAsync();
 
         return allTransactions;
     }
