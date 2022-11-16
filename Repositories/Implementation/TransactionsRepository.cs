@@ -1,5 +1,4 @@
 using ExpenseTrackerApi.Models.Database;
-using ExpenseTrackerApi.Models.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseTrackerApi.Repositories;
@@ -21,6 +20,14 @@ public class TransactionsRepository : ITransactionsRepository
         return transaction.Id;
     }
 
+    public async Task<Transaction> GetTransactionAsync(int id)
+    {
+        return await this.databaseContext
+            .Transactions
+            .Include(t => t.Category)
+            .SingleOrDefaultAsync(t => t.Id == id);
+    }
+
     public async Task<List<Transaction>> GetTransactionsAsync(DateTime fromDate, DateTime toDate)
     {
         var allTransactions = await this.databaseContext
@@ -32,5 +39,11 @@ public class TransactionsRepository : ITransactionsRepository
             .ToListAsync();
 
         return allTransactions;
+    }
+
+    public async Task UpdateTransactionAsync(Transaction transaction)
+    {
+        this.databaseContext.Entry(transaction).State = EntityState.Modified;
+        await this.databaseContext.SaveChangesAsync();
     }
 }
